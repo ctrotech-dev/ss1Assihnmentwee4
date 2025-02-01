@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SS1 Assignment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col">
+
+    <!-- 🌟 Top Navigation -->
+    <nav class="sticky z-20 top-0 bg-gray-800 py-4 px-6 flex justify-between items-center shadow-md">
+        <h1 class="text-xl font-bold text-yellow-400 flex items-center gap-2">
+            <ion-icon name="book-outline"></ion-icon> SS1 Assignments
+        </h1>
+        <button class="text-white flex items-center justify-center bg-gray-700 px-3 py-1 rounded-md">
+            <ion-icon name="menu-outline"></ion-icon>
+        </button>
+    </nav>
+
+    <!-- 📌 Main Container -->
+    <div class="flex flex-col items-center w-full max-w-2xl mx-auto mt-6">
+
+        <!-- 📝 Header Section -->
+        <div class="text-center mb-6">
+            <h2 class="text-2xl font-semibold flex items-center gap-2">
+                <ion-icon name="school-outline"></ion-icon> Welcome, SS1 Students!
+            </h2>
+            <p class="text-gray-400 text-sm">Select a subject to view your assignments.</p>
+        </div>
+
+        <!-- 🔄 Tab Buttons -->
+        <div class="sticky flex left-0 right-0 z-30 w-full top-0 py-2.5 px-4 bg-gray-900">
+        <div class="flex w-full max-w-sm bg-gray-800 p-1 gap-1 rounded-lg">
+            <button id="physicsTab" class="tab-btn w-1/2 bg-yellow-400 text-gray-900 py-2 rounded-md transition-all flex items-center justify-center gap-1">
+                <ion-icon name="planet-outline"></ion-icon> Physics
+            </button>
+            <button id="chemistryTab" class="tab-btn w-1/2 bg-gray-700 py-2 rounded-md transition-all flex items-center justify-center gap-1">
+                <ion-icon name="flask-outline"></ion-icon> Chemistry
+            </button>
+        </div>
+        </div>
+        <!-- 📜 Assignment Container -->
+        <div id="assignmentContainer" class="w-full mt-6 px-4 space-y-4 transition-opacity duration-500"></div>
+    </div>
+
+          <!-- 📝 Alert Message -->
+        <div id="alertMessage" class="fixed top-0 left-0 right-0 bg-yellow-400 text-gray-900 p-4 rounded-b-md shadow-md transform -translate-y-full transition-transform duration-500 ease-in-out flex justify-between items-center z-50">
+            <span class="text-sm">Want more info about assignments? Click on the menu icon at the top right!</span>
+            <button id="closeAlert" class="text-xl font-bold text-gray-900 hover:text-gray-700">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+        </div>
+    
+   <footer id="more" class="bg-gray-900 text-gray-400 h-full py-10 px-6 top-0 fixed w-full translate-y-full transition-transform duration-300 z-50 overflow-auto">
+        <section class="bg-gray-900 text-gray-300 rounded-lg shadow-lg w-full mb-24">
+    <h3 class="text-2xl text-center font-semibold mb-4 flex items-center gap-3 text-yellow-400">
+        <ion-icon name="information-circle-outline" class="text-3xl"></ion-icon> Assignment Submission Guide
+    </h3>
+    <p class="mb-6 text-center text-gray-300">Here are some helpful tips and resources for submitting your assignments:</p>
+    
+    <ul class="space-y-6">
+        <li class="flex items-start gap-4">
+            <ion-icon name="calendar-outline" class="flex-shrink-0 text-yellow-400 text-2xl"></ion-icon>
+            <div>
+                <h4 class="font-semibold text-lg text-gray-100">1. Submission Deadlines</h4>
+                <p>Make sure to submit your assignments before the deadline (Monday: 3rd: Febuary ). Late submissions might not be accepted!</p>
+            </div>
+        </li>
+        <li class="flex items-start gap-4">
+            <ion-icon name="document-text-outline" class="flex-shrink-0 text-yellow-400 text-2xl"></ion-icon>
+            <div>
+                <h4 class="font-semibold text-lg text-gray-100">2. File Format(optional)</h4>
+                <p>Your assignments should be submitted in PDF format. If you have any trouble, feel free to ask for assistance.</p>
+            </div>
+        </li>
+        <li class="flex items-start gap-4">
+            <ion-icon name="pencil-outline" class="flex-shrink-0 text-yellow-400 text-2xl"></ion-icon>
+            <div>
+                <h4 class="font-semibold text-lg text-gray-100">3. Assignment Length</h4>
+                <p>Ensure your assignment is detailed but concise. Answer all the questions fully and clearly.</p>
+            </div>
+        </li>
+        <li class="flex items-start gap-4">
+            <ion-icon name="help-circle-outline" class="flex-shrink-0 text-yellow-400 text-2xl"></ion-icon>
+            <div>
+                <h4 class="font-semibold text-lg text-gray-100">4. Resources for Help</h4>
+                <p>If you need extra help, check out the resources below or contact your teacher:</p>
+                <ul class="pl-4 space-y-2">
+                    <li>- <a href="https://www.khanacademy.org/science/physics" class="text-yellow-400 hover:underline" target="_blank">Physics Lab Materials</a></li>
+                    <li>- <a href="https://chem.libretexts.org/Bookshelves" class="text-yellow-400 hover:underline" target="_blank">Chemistry Assignment Resources</a></li>
+                    <li>- <a href="https://www.khanacademy.org/science/chemistry" class="text-yellow-400 hover:underline" target="_blank">Online Physics & Chemistry Tutorials</a></li>
+                </ul>
+            </div>
+        </li>
+        <li class="flex items-start gap-4">
+            <ion-icon name="flex-shrink-0 chatbubble-outline" class="text-yellow-400 text-2xl"></ion-icon>
+            <div>
+                <h4 class="font-semibold text-lg text-gray-100">5. Need Help?</h4>
+                <p>If you’re having trouble, don’t hesitate to ask me <a href="mailto:ctrotech.dev@gmail.com" class="hover:text-yellow-400 transition font-semibold text-xl">here</a> . You can also visit the FAQ section on the portal for common issues.</p>
+            </div>
+        </li>
+    </ul>
+</section>
+       
+       <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-8 text-center md:text-left">
+        <!-- Company Info -->
+        <div>
+            <div class="flex justify-center md:justify-start items-center gap-2">
+                <img src="logo.png" alt="Ctrotech Tutor Insights Logo" class="w-12 h-12">
+                <h2 class="text-xl font-bold text-yellow-500">Ctrotech Tutor Insights</h2>
+            </div>
+            <p class="mt-2 text-sm">Bringing ideas to life with technology, education, and community.</p>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+            <h3 class="text-lg font-semibold text-yellow-500 mb-3">Quick Links</h3>
+            <ul class="space-y-2">
+                <li><a href="#aboutus.html" class="hover:text-yellow-400 transition">About Us</a></li>
+                <li><a href="#privacypolicy.html" class="hover:text-yellow-400 transition">Privacy Policy</a></li>
+                <li><a href="#terms_condition.html" class="hover:text-yellow-400 transition">Terms & Conditions</a></li>
+                <li><a href="#contactus.html" class="hover:text-yellow-400 transition">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Social Media -->
+        <div>
+            <h3 class="text-lg font-semibold text-yellow-500 mb-3">Follow Us</h3>
+            <div class="flex justify-center md:justify-start space-x-4 text-2xl">
+                <a href="mailto:ctrotech.dev@gmail.com" class="hover:text-yellow-400 transition"><ion-icon name="mail-outline"></ion-icon></a>
+                <a href="https://wa.me/qr/3PRCNQEHBLW7E1" class="hover:text-yellow-400 transition"><ion-icon name="logo-whatsapp"></ion-icon></a>
+                <a href="https://www.instagram.com/ctronela?igsh=MXB4NmY3aXA4dDBzZw==" class="hover:text-yellow-400 transition"><ion-icon name="logo-instagram"></ion-icon></a>
+                <a href="https://www.linkedin.com/in/odejobi-abiola-175a1933a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" class="hover:text-yellow-400 transition"><ion-icon name="logo-linkedin"></ion-icon></a>
+            </div>
+        </div>
+    </div>
+        
+        <!-- Copyright Section -->
+        <div class="border-t border-gray-700 mt-6 pt-4 text-center text-sm">
+            &copy; 2025 Ctrotech Tutor Insights. All rights reserved.
+        </div>
+    </footer>
+    
+    <script>
+    // 📌 Assignment Data
+const assignments = {
+    physics: [
+        { id: 1, question: "What is the difference between speed and velocity?", hint: "Consider direction and magnitude.", answer: "Speed is scalar (magnitude only), while velocity is vector (magnitude and direction)." },
+        { id: 2, question: "Define acceleration. Give an example.", hint: "It involves a change in velocity.", answer: "Acceleration is the rate of change of velocity over time. Example: A car speeding up." },
+        { id: 3, question: "What is uniform motion?", hint: "Think of a constant velocity.", answer: "Uniform motion occurs when an object moves at a constant speed in a straight line." },
+        { id: 4, question: "Explain the concept of average velocity.", hint: "Consider total displacement and time.", answer: "Average velocity is the total displacement divided by total time." },
+        { id: 5, question: "What is the difference between distance and displacement?", hint: "One considers direction, the other does not.", answer: "Distance is scalar, while displacement is a vector quantity (it includes direction)." },
+        { id: 6, question: "How do you calculate acceleration?", hint: "You need change in velocity and time.", answer: "Acceleration = (Final velocity - Initial velocity) / Time taken." },
+        { id: 7, question: "What is a decelerating object?", hint: "This object slows down.", answer: "A decelerating object experiences a negative acceleration, meaning its velocity decreases over time." },
+        { id: 8, question: "What is the formula for speed?", hint: "Speed is distance over time.", answer: "Speed = Distance / Time." },
+        { id: 9, question: "How does velocity differ from speed in terms of motion?", hint: "Consider the path of the object.", answer: "Velocity accounts for direction, while speed only considers how fast the object is moving." },
+        { id: 10, question: "What is instantaneous velocity?", hint: "Think of velocity at a particular moment.", answer: "Instantaneous velocity is the velocity of an object at a specific point in time." },
+        { id: 11, question: "What is the SI unit for velocity?", hint: "It’s a type of distance per time.", answer: "The SI unit for velocity is meters per second (m/s)." },
+        { id: 12, question: "What is the relationship between speed and velocity in circular motion?", hint: "Think about the path traveled.", answer: "In circular motion, speed is constant but velocity changes due to the change in direction." },
+        { id: 13, question: "Can an object have a constant speed but still accelerate?", hint: "Think of circular motion again.", answer: "Yes, an object can have constant speed but still accelerate, as in circular motion, where velocity changes direction." },
+        { id: 14, question: "What is the effect of gravity on the acceleration of an object?", hint: "It causes objects to fall at a certain rate.", answer: "Gravity causes an object to accelerate at a constant rate of 9.8 m/s² near Earth’s surface." },
+        { id: 15, question: "How do you calculate the total displacement in a given motion?", hint: "It’s the straight-line distance between start and end points.", answer: "Displacement is calculated by finding the straight-line distance and direction between the initial and final position." },
+        { id: 16, question: "Explain the term 'velocity-time graph' and what it represents.", hint: "Think of the graph showing the object's speed over time.", answer: "A velocity-time graph represents how the velocity of an object changes over time, with the slope representing acceleration." },
+        { id: 17, question: "What is the area under a velocity-time graph?", hint: "It represents something related to distance.", answer: "The area under a velocity-time graph represents the displacement of the object." },
+        { id: 18, question: "What are the main factors that affect acceleration?", hint: "Think about forces and mass.", answer: "Acceleration is affected by the force acting on an object and its mass, as described by Newton’s second law (F = ma)." },
+        { id: 19, question: "What is the difference between average velocity and instantaneous velocity?", hint: "One is over time, the other at a point.", answer: "Average velocity is calculated over a period of time, while instantaneous velocity is the velocity at a specific moment." },
+        { id: 20, question: "What does a negative acceleration indicate?", hint: "It’s related to the speed slowing down.", answer: "Negative acceleration indicates that the object is slowing down, or decelerating." }
+    ],
+    chemistry: [
+    { 
+        id: 1, 
+        question: "What is the particulate nature of matter?", 
+        hint: "Matter is made up of small discrete particles.",
+        answer: "The particulate nature of matter states that all matter is composed of tiny, discrete particles such as atoms, molecules, and ions."
+    },
+    { 
+        id: 2, 
+        question: "What are the three states of matter?", 
+        hint: "Think about solids, liquids, and gases.",
+        answer: "The three states of matter are solid, liquid, and gas."
+    },
+    { 
+        id: 3, 
+        question: "How do particles behave in a solid?", 
+        hint: "They are packed tightly and vibrate in place.",
+        answer: "In a solid, particles are closely packed in a fixed arrangement and only vibrate in their positions."
+    },
+    { 
+        id: 4, 
+        question: "How do particles behave in a liquid?", 
+        hint: "They move past each other but remain close.",
+        answer: "In a liquid, particles are loosely packed and can move around, allowing the liquid to flow."
+    },
+    { 
+        id: 5, 
+        question: "How do particles behave in a gas?", 
+        hint: "They move freely in all directions.",
+        answer: "In a gas, particles are far apart and move randomly at high speeds."
+    },
+    { 
+        id: 6, 
+        question: "What is diffusion?", 
+        hint: "Movement of particles from high to low concentration.",
+        answer: "Diffusion is the process by which particles spread from an area of high concentration to an area of low concentration."
+    },
+    { 
+        id: 7, 
+        question: "Why do gases diffuse faster than liquids?", 
+        hint: "Consider particle movement and spacing.",
+        answer: "Gases diffuse faster than liquids because their particles move more freely and are farther apart."
+    },
+    { 
+        id: 8, 
+        question: "What happens to particle movement when temperature increases?", 
+        hint: "More energy means faster motion.",
+        answer: "As temperature increases, particles gain energy and move faster."
+    },
+    { 
+        id: 9, 
+        question: "What is Brownian motion?", 
+        hint: "Random movement of particles in fluids.",
+        answer: "Brownian motion is the random movement of particles in a fluid due to collisions with smaller, invisible particles."
+    },
+    { 
+        id: 10, 
+        question: "Why does a gas fill any container completely?", 
+        hint: "Particles move freely in all directions.",
+        answer: "A gas fills any container completely because its particles move randomly and spread to occupy all available space."
+    },
+    { 
+        id: 11, 
+        question: "What is the difference between evaporation and boiling?", 
+        hint: "One occurs at any temperature, the other at a specific point.",
+        answer: "Evaporation happens at any temperature from the surface, while boiling occurs at a specific temperature throughout the liquid."
+    },
+    { 
+        id: 12, 
+        question: "Why does increasing pressure turn a gas into a liquid?", 
+        hint: "Forces particles closer together.",
+        answer: "Increasing pressure forces gas particles closer, reducing movement and forming a liquid."
+    },
+    { 
+        id: 13, 
+        question: "What is condensation?", 
+        hint: "Gas to liquid change.",
+        answer: "Condensation is the process where a gas changes into a liquid when cooled."
+    },
+    { 
+        id: 14, 
+        question: "What happens to the arrangement of particles during melting?", 
+        hint: "Particles break free from fixed positions.",
+        answer: "During melting, particles gain energy, break free from fixed positions, and move past each other as a liquid forms."
+    },
+    { 
+        id: 15, 
+        question: "Why do solids have a fixed shape?", 
+        hint: "Particles are tightly held in place.",
+        answer: "Solids have a fixed shape because their particles are tightly packed in a rigid structure."
+    },
+    { 
+        id: 16, 
+        question: "What is sublimation?", 
+        hint: "Solid to gas without liquid phase.",
+        answer: "Sublimation is the direct change of a solid to a gas without passing through the liquid state."
+    },
+    { 
+        id: 17, 
+        question: "Why do gases have low density compared to solids and liquids?", 
+        hint: "Particle spacing is key.",
+        answer: "Gases have low density because their particles are spread far apart, occupying more space."
+    },
+    { 
+        id: 18, 
+        question: "What happens to a gas when cooled?", 
+        hint: "Particles lose energy and slow down.",
+        answer: "When cooled, a gas loses energy, its particles slow down, and it may condense into a liquid."
+    },
+    { 
+        id: 19, 
+        question: "How does the kinetic theory explain the states of matter?", 
+        hint: "It describes particle energy and movement.",
+        answer: "The kinetic theory states that the behavior of solids, liquids, and gases depends on particle motion and energy."
+    },
+    { 
+        id: 20, 
+        question: "What is the effect of temperature on gas pressure?", 
+        hint: "Higher temperature increases movement.",
+        answer: "Higher temperature increases gas pressure because particles move faster and collide more with container walls."
+    },
+],
+};
+
+// 📌 Select Elements
+const menuButton = document.querySelector("nav button"); // Menu button
+const footer = document.getElementById("more"); // Footer section
+let isFooterVisible = false;
+
+// 📌 Toggle Footer Visibility on Click
+menuButton.addEventListener("click", () => {
+    isFooterVisible = !isFooterVisible;
+    updateFooterState();
+});
+
+// 📌 Swipe to Close Footer
+let startY = 0;
+
+footer.addEventListener("touchstart", (event) => {
+    startY = event.touches[0].clientY;
+});
+
+footer.addEventListener("touchmove", (event) => {
+    let currentY = event.touches[0].clientY;
+    let deltaY = currentY - startY;
+
+    if (deltaY > 100) { // If swipe down more than 50px
+        isFooterVisible = false;
+        updateFooterState();
+    }
+});
+
+// 📌 Update Footer State
+function updateFooterState() {
+    if (isFooterVisible) {
+        footer.classList.remove("translate-y-full");
+        footer.classList.add("translate-y-0");
+    } else {
+        footer.classList.remove("translate-y-0");
+        footer.classList.add("translate-y-full");
+    }
+}
+
+// 📌 Select Elements
+const physicsTab = document.getElementById("physicsTab");
+const chemistryTab = document.getElementById("chemistryTab");
+const assignmentContainer = document.getElementById("assignmentContainer");
+
+// 📌 Function to Render Questions & Save State
+function renderQuestions(subject) {
+    // Save selected tab to localStorage
+    localStorage.setItem("selectedSubject", subject);
+
+    assignmentContainer.style.opacity = "0"; // Fade out effect
+    setTimeout(() => {
+        assignmentContainer.innerHTML = ""; // Clear previous questions
+        assignments[subject].forEach(q => {
+            const questionEl = document.createElement("div");
+            questionEl.className = "bg-gray-800 p-4 rounded-md shadow-md text-sm transition-all font-semibold transform hover:scale-105 hover:bg-gray-900 cursor-pointer";
+
+            // ✅ Styled Question Number
+            const questionNumber = document.createElement("span");
+            questionNumber.className = "text-yellow-400 font-extrabold text-lg";
+            questionNumber.textContent = `Q${q.id}: `;
+
+            // ✅ Question Text
+            const questionText = document.createElement("span");
+            questionText.textContent = q.question;
+
+            // ✅ Hint Section (Styled Separately)
+            const hintEl = document.createElement("div");
+            hintEl.className = "text-gray-400 text-xs italic mt-2";
+            hintEl.textContent = `Hint: ${q.hint}`;
+
+            // 🏗️ Append Elements
+            questionEl.appendChild(questionNumber);
+            questionEl.appendChild(questionText);
+            questionEl.appendChild(hintEl);
+
+            assignmentContainer.appendChild(questionEl);
+        });
+
+        // 🏆 Update Active Tab UI
+        if (subject === "physics") {
+            physicsTab.classList.add("bg-yellow-400", "text-gray-900");
+            chemistryTab.classList.remove("bg-yellow-400", "text-gray-900");
+            chemistryTab.classList.add("bg-gray-700");
+        } else {
+            chemistryTab.classList.add("bg-yellow-400", "text-gray-900");
+            physicsTab.classList.remove("bg-yellow-400", "text-gray-900");
+            physicsTab.classList.add("bg-gray-700");
+        }
+
+        assignmentContainer.style.opacity = "1"; // Fade in effect
+
+        // 🚀 Restore Scroll Position if Saved
+        const savedScrollPosition = localStorage.getItem(`${subject}-scrollPosition`);
+        if (savedScrollPosition) {
+            assignmentContainer.scrollTop = savedScrollPosition;
+        }
+    }, 200);
+}
+
+// 🚀 Load Last Selected Subject or Default to Physics
+const savedSubject = localStorage.getItem("selectedSubject") || "physics";
+renderQuestions(savedSubject);
+
+// 🌟 Event Listeners for Tab Switching
+physicsTab.addEventListener("click", () => renderQuestions("physics"));
+chemistryTab.addEventListener("click", () => renderQuestions("chemistry"));
+
+// 📌 Save Scroll Position on Scroll
+assignmentContainer.addEventListener("scroll", () => {
+    const currentScrollPosition = assignmentContainer.scrollTop;
+    const currentSubject = localStorage.getItem("selectedSubject") || "physics";
+    localStorage.setItem(`${currentSubject}-scrollPosition`, currentScrollPosition);
+});
+
+function showAlert() {
+            const alertMessage = document.getElementById("alertMessage");
+            alertMessage.classList.remove("-translate-y-full"); // Slide down
+
+            // Auto-hide the alert after 5 seconds
+            setTimeout(() => {
+                closeAlert(); // Close the alert automatically after 5 seconds
+            }, 5000);
+        }
+
+        // Function to hide the alert message with animation
+        function closeAlert() {
+            const alertMessage = document.getElementById("alertMessage");
+            alertMessage.classList.add("-translate-y-full"); // Slide up
+        }
+
+        // Show alert when the page loads
+        document.addEventListener("DOMContentLoaded", showAlert);
+
+        // Event listener for close button in alert message
+        const closeAlertButton = document.getElementById("closeAlert");
+        closeAlertButton.addEventListener("click", closeAlert);
+    </script>
+</body>
+</html>
