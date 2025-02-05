@@ -356,15 +356,21 @@ function renderQuestions(subject) {
             // ✅ Question Text
             const questionText = document.createElement("span");
             questionText.textContent = q.question;
-
+            questionText.className = "block";
             // ✅ Hint Section (Styled Separately)
             const hintEl = document.createElement("div");
             hintEl.className = "text-gray-400 text-xs italic mt-2";
             hintEl.textContent = `Hint: ${q.hint}`;
 
+            const questionAnswer = document.createElement("span");
+            questionAnswer.textContent = q.answer;
+            questionAnswer.classList.add("text-yellow-400", "font-semibold");
+            
+            
             // 🏗️ Append Elements
             questionEl.appendChild(questionNumber);
             questionEl.appendChild(questionText);
+            questionEl.appendChild(questionAnswer);
             questionEl.appendChild(hintEl);
 
             assignmentContainer.appendChild(questionEl);
